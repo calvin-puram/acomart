@@ -25,7 +25,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .sidebarnav__wrapper {
   padding-top: 1.5rem;
 }
@@ -54,6 +54,26 @@ export default {
     height: 0.1rem;
     background: $gray-light;
     margin: 1rem 0;
+  }
+}
+
+@include laptop {
+  .sidebarnav__wrapper {
+    padding-top: 0.8rem;
+  }
+  .sidebarnav {
+    width: 100%;
+
+    &__icon {
+      padding-right: 0;
+      font-size: $h-2-font-size;
+      text-align: center;
+      padding: 0 0.2rem;
+    }
+
+    &__navcontent {
+      display: none;
+    }
   }
 }
 </style>

@@ -23,7 +23,7 @@ export default {
 body {
   font-size: $body-font-size;
   font-weight: $body-font-weight;
-  color: $white;
-  background: $dark;
+  color: $body-text-color;
+  background: $body-bg-color;
 }
 </style>

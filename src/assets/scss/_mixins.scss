@@ -9,14 +9,20 @@
  *
  */
 
+@mixin mobile {
+  @media (max-width: map-get($breakpoints, "sm")) {
+    @content;
+  }
+}
+
 @mixin tablet {
-  @media (min-width: map-get($breakpoints, "md")) {
+  @media (max-width: map-get($breakpoints, "md")) {
     @content;
   }
 }
 
 @mixin laptop {
-  @media (min-width: map-get($breakpoints, "lg")) {
+  @media (max-width: map-get($breakpoints, "lg")) {
     @content;
   }
 }
@@ -51,5 +57,27 @@
 
   span {
     padding-left: 0.5rem;
+  }
+}
+
+@mixin btn-sm($bg-color, $color) {
+  display: inline-block;
+  color: $color;
+  border-radius: 30px;
+  border: $bg-color;
+  padding: 0.4rem 0;
+  background: $bg-color;
+  margin-right: 0rem;
+  margin-bottom: 1rem;
+  width: 8rem;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+
+  &:hover {
+    background: darken($bg-color, 50%);
+  }
+
+  span {
+    padding: 0 0.2rem;
   }
 }

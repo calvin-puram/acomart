@@ -35,13 +35,18 @@
     </div>
 
     <div>
-      <div class="movie movie-3" v-for="i in [1, 2, 3, 4, 5]" :key="i">
+      <div class="movie movie-3" v-for="i in [11, 12, 13, 14, 15]" :key="i">
         <div class="movie__name">
           <span class="movie__num">{{ i }}</span>
           <div class="movie__name-main">
             <p class="main_header-primary">Episode {{ i }}</p>
             <p class="main_header-secondary">1hr24min</p>
           </div>
+        </div>
+
+        <div class="movie__action mobile">
+          <i class="fas fa-cloud-download-alt movie__icons"></i>
+          <i class="far fa-play-circle movie__icons"></i>
         </div>
       </div>
     </div>
@@ -52,7 +57,7 @@
 export default {};
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .movie__wrapper {
   display: flex;
   padding-top: 1.5rem;
@@ -66,9 +71,14 @@ export default {};
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+
+  .mobile {
+    display: none;
+  }
 
   &__action {
-    margin-left: 15rem;
+    margin-left: 10rem;
     display: flex;
   }
 
@@ -108,6 +118,32 @@ export default {};
     .main_header-secondary {
       font-size: $h-5-font-size;
       color: $gray;
+    }
+  }
+}
+
+@include laptop {
+  .movie__wrapper {
+    display: block;
+    width: 100%;
+    flex-direction: column;
+  }
+  .movie {
+    &__action {
+      margin-left: 0;
+      display: flex;
+    }
+
+    .mobile {
+      display: flex;
+    }
+  }
+}
+
+@include mobile {
+  .movie {
+    .main_header-primary {
+      font-size: 0.8rem;
     }
   }
 }

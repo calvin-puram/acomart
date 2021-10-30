@@ -1,5 +1,6 @@
 <template>
   <div class="mainpage">
+    <MobileNav class="mobile__nav" />
     <div class="mainpage__hero">
       <div class="mainpage__heroview">
         <div class="mainpage__heroview-back">
@@ -38,24 +39,24 @@
             </div>
             <button class="rate__movie">
               <span>Rate this movie</span>
-              <i class="fas fa-chevron-right"></i>
+              <i class="fas fa-chevron-right mobile-icon"></i>
             </button>
           </div>
         </div>
 
         <div class="mainpage__heroview-actions">
           <button class="rate__movie-play">
-            <i class="fas fa-play"></i>
+            <i class="fas fa-play mobile-icon"></i>
             <span class="btn-text">Watch now</span>
           </button>
 
           <button class="rate__movie-bookmark">
-            <i class="fas fa-bookmark"></i>
+            <i class="fas fa-bookmark mobile-icon"></i>
             <span>Added to my list</span>
           </button>
 
           <button class="rate__movie-remove">
-            <i class="fas fa-minus-circle"></i>
+            <i class="fas fa-minus-circle mobile-icon"></i>
             <span>Rate this movie</span>
           </button>
         </div>
@@ -84,19 +85,25 @@
 <script>
 import Movies from "../layouts/Movies.vue";
 import Paginate from "../layouts/Paginate.vue";
+import MobileNav from "../layouts/MobileNav.vue";
 export default {
   name: "MainPage",
   components: {
     Movies,
     Paginate,
+    MobileNav,
   },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .mainpage {
   width: 85%;
   background: $dark;
+
+  .mobile__nav {
+    display: none;
+  }
 
   &__hero {
     background: linear-gradient(45deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)),
@@ -199,8 +206,7 @@ export default {
       .mainpage__heroview-actions {
         display: flex;
         align-items: center;
-
-        // buttons
+        flex-wrap: wrap;
       }
     }
 
@@ -234,6 +240,7 @@ export default {
   &__pagination {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 
     &-header {
       font-size: $h-2-font-size;
@@ -273,6 +280,105 @@ export default {
 
     span {
       padding-left: 0.5rem;
+    }
+  }
+}
+
+@include laptop {
+  .mainpage {
+    width: 95%;
+  }
+}
+
+@include mobile {
+  .mainpage {
+    width: 100%;
+
+    .mobile__nav {
+      display: block;
+    }
+
+    .mobile-icon {
+      display: none;
+    }
+
+    &__heroview-actions {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 1.2rem;
+    }
+
+    &__hero {
+      width: 100%;
+      margin: 2rem 0;
+    }
+    &__heroview {
+      width: 95%;
+
+      &-content {
+        justify-content: center;
+        .mainpage__heroview-img {
+          img {
+            width: 80px;
+          }
+        }
+
+        .mainpage__heroview-cont {
+          &-head {
+            color: $white;
+            padding-bottom: 0.5rem;
+            font-weight: $h-1-font-weight;
+            font-size: 1.4rem;
+            padding-top: 0;
+          }
+
+          .movie__details {
+            padding-bottom: 0.5rem;
+          }
+
+          .ratings {
+            display: flex;
+            align-items: center;
+            font-size: 0.5rem;
+          }
+
+          .rate__movie {
+            padding: 0.5rem 0.6rem;
+            margin-top: 1rem;
+          }
+        }
+      }
+    }
+
+    &__pagination {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+
+      &-header {
+        font-size: $h-4-font-size;
+        margin-right: 0.5rem;
+      }
+    }
+
+    .rate__movie-play {
+      @include btn-sm($red, $white);
+    }
+
+    .rate__movie-bookmark {
+      @include btn-sm($white, #333);
+    }
+
+    .rate__movie-remove {
+      padding: 0.4rem 0;
+      margin-right: 0rem;
+      width: 8rem;
+      margin-bottom: 1rem;
+      span {
+        padding: 0 0.2rem;
+      }
     }
   }
 }

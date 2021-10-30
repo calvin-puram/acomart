@@ -23,24 +23,26 @@ export default {
   components: {
     SidebarNav,
   },
-  data() {
+  setup() {
+    const nav = [
+      { name: "Movies", icon: "fas fa-film sidebarnav__icon" },
+      { name: "Series", icon: "fas fa-ticket-alt sidebarnav__icon" },
+      {
+        name: "Downloads",
+        icon: "fas fa-cloud-download-alt sidebarnav__icon",
+      },
+      { name: "My List", icon: "fas fa-play sidebarnav__icon" },
+      { name: "Afrocinema", icon: "fas fa-compact-disc sidebarnav__icon" },
+    ];
+
     return {
-      nav: [
-        { name: "Movies", icon: "fas fa-film sidebarnav__icon" },
-        { name: "Series", icon: "fas fa-ticket-alt sidebarnav__icon" },
-        {
-          name: "Downloads",
-          icon: "fas fa-cloud-download-alt sidebarnav__icon",
-        },
-        { name: "My List", icon: "fas fa-play sidebarnav__icon" },
-        { name: "Afrocinema", icon: "fas fa-compact-disc sidebarnav__icon" },
-      ],
+      nav,
     };
   },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .sidebar {
   min-height: 100vh;
   margin-bottom: 2rem;
@@ -67,6 +69,21 @@ export default {
       width: 100%;
       object-fit: contain;
     }
+  }
+}
+
+@include laptop {
+  .sidebar {
+    width: 5%;
+    padding-left: 0rem;
+    margin: 0 auto;
+    padding-top: 3rem;
+  }
+}
+
+@include mobile {
+  .sidebar {
+    display: none;
   }
 }
 </style>
